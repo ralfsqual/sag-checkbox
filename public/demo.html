@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>sag-checkbox</title>
+    <link rel="stylesheet" href="../dist/SagCheckbox.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="../dist/SagCheckbox.umd.js" ></script>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but sag-checkbox doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <!-- built files will be auto injected -->
+    <div id="scw_status">
+      <sag-checkbox
+              id="sc_status"
+              name="staffInfoVO.status"
+              :source="source1"
+              :has-filter="true"
+              :width="200"
+              :item-width="96"
+              mode="default"
+              :required="false"
+      />
+    </div>
+    <script type="text/javascript">
+      new Vue({
+        el:'#scw_status',
+        data(){
+          return {
+            source1:[
+              {name: "在职", value: "1", checked: false  },
+              {name: "离职", value: "0", checked: false  }
+            ]
+          }
+        },
+        mounted(){
+          console.log(new Date() + 'sagcheckbox 已加载');
+        }
+      });
+    </script>
+  <script>
+
+  </script>
+  </body>
+</html>
