@@ -1,7 +1,7 @@
 <template>
   <div class="wrapper" @click.stop>
     <template v-if="mode === 'default'" >
-      <div class="result" :class="{required:required}" :style="{width:realWidth}" @click.stop="visible = true">
+      <div class="result" :class="{required:required}" :style="{width:realWidth}" @click.stop="visible = true" :title="title">
         <span v-for="item in checkedItems" :key="item.value" class="checked-item" @click.stop="itemClickHandler(item)" title="点击删除">{{item.name}}</span>
       </div>
       <transition name="fade">
@@ -72,6 +72,9 @@ export default {
     },
     checkedItems(){
       return this.items.filter(it => it.checked);
+    },
+    title(){
+      return this.items.filter(it => it.checked).map(x => x.name).join(",");
     }
   },
   methods:{
@@ -135,27 +138,17 @@ export default {
   background: url("../static/dropdown.png") no-repeat right center;
   border: 1px solid #ccc;
   width: 300px;
-  height: 25px;
-  line-height: 25px;
+  height: 24px;
+  line-height: 24px;
   overflow: hidden;
 }
 .required{
   border-left: 1px solid red;
 }
-/*.result::after{
-  content: "";
-  width: 0;
-  height: 0;
-  border-right: 9px solid transparent;
-  border-left: 9px solid transparent;
-  border-top: 10px solid red;
-  position: absolute;
-  right: 2px;
-  top: 10px;
-}*/
 .result .checked-item{
   margin: 0 5px;
-  border: 1px dotted #6c6867;
+  padding-right: 10px;
+  background: url("../static/delete.gif") no-repeat right center;
   cursor: pointer;
 }
 .filter{
@@ -171,6 +164,7 @@ ul.panel {
   margin: 0;
   padding: 0;
 }
+
 ul.panel input[type="checkbox"]{
   vertical-align: middle;
   margin-bottom: 2px;
@@ -180,6 +174,9 @@ ul.panel-pop {
   z-index: 1;
   background-color: #fff;
   border: 1px solid #ccc;
+}
+ul.panel li{
+  height: 25px;
 }
 li.li-item {
   margin-left:2px;
@@ -195,10 +192,16 @@ li.li-item:hover {
 }
 
 .panel .tools{
+  height: 28px;
   clear: both;
+  line-height: 28px;
 }
 .panel .tools .clear,.panel .tools .ok{
   float:right;
+}
+.tools input[type="text"]{
+  height: 20px;
+  padding: 0 2px;
 }
 a {
   color: #42b983;
