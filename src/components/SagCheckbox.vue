@@ -144,8 +144,8 @@ export default {
 }
 .result .checked-item{
   margin: 0 5px;
-  padding-right: 10px;
-  background: url("../static/delete.gif") no-repeat right center;
+  padding-left: 10px;
+  background: url("../static/delete.gif") no-repeat left center;
   cursor: pointer;
 }
 .filter{
