@@ -4,11 +4,11 @@
       id="testCheckbox"
       name="goodsInfos.goodsId"
       :source="source"
-      :item-width="150"
-      :panel-width="600"
+      :item-width="90"
+      :panel-width="300"
       :has-filter="true"
       mode="default"
-      :required="false"
+      :required="true"
     />
   </div>
 </template>
@@ -30,9 +30,11 @@ export default {
         {name: '哈密瓜', value: '4'},
         {name: '菠萝蜜', value: '5'},
         {name: '橘子', value: '6', checked: true},
-        {name: '橘子2', value: '7'},
-        {name: '橘子4', value: '8'},
-        {name: '橘子5', value: '62'}
+        {name: '橙子', value: '7'},
+        {name: '山竹', value: '8'},
+        {name: '丑八怪', value: '62'},
+        {name: '雪莲果', value: '63'},
+        {name: '榴莲', value: '65'}
       ]
     }
   }

@@ -1,8 +1,8 @@
 <template>
   <div class="wrapper" @click.stop>
     <template v-if="mode === 'default'" >
-      <div class="result" :class="{required:required}" :style="{width:realWidth}" @click.stop="visible = true" :title="title">
-        <span v-for="item in checkedItems" :key="item.value" class="checked-item" @click.stop="itemClickHandler(item)" title="点击删除">{{item.name}}</span>
+      <div class="result" :class="{required}" :style="{width:realWidth}" @click.stop="visible = true" :title="title">
+        <span v-for="item in checkedItems" :key="item.value" class="checked-item" @click.stop="itemClickHandler(item)" >{{item.name}}</span>
       </div>
       <transition name="fade">
         <ul class="panel panel-pop clearfix" v-show="visible" :style="{minWidth: realWidth, width:realPanelWidth}">
@@ -11,7 +11,7 @@
             <a href="javascript:void(0)" class="tool-btn" @click="checkAll" >全选</a>
             <a href="javascript:void(0)" class="tool-btn" @click="clearAll" >清空</a>
           </li>
-          <li class="li-item" v-for="(item,index) in items" :key="item.value" @click.stop="itemClickHandler(item)" :style="{width:realItemWidth}" v-show="item.visible !== false">
+          <li class="li-item" v-for="(item,index) in items" :key="item.value" @click.stop="itemClickHandler(item)" :style="{width:realItemWidth}" :title="item.name" v-show="item.visible !== false">
             <input type="checkbox" :name="name|formatName(index)" :checked="item.checked" /><label>{{item.name}}</label>
           </li>
         </ul>
@@ -39,7 +39,7 @@ export default {
     width:{type: [Number,String], default: "300px" },
     panelWidth:{type: [Number,String], default: "300px" },
     itemWidth:{type: [Number,String], default: "auto" },
-    mode:{type:String, default:"default" }
+    mode:{type:String, default:"default", validator:value => ['default','plain'].includes(value)}
   },
   data(){
     return {
@@ -65,7 +65,8 @@ export default {
       return this.formatMesure(this.width);
     },
     realItemWidth(){
-      return this.formatMesure(this.itemWidth);
+      let width = this.formatMesure(this.itemWidth);
+      return width === 'auto' ? '100%' : width;
     },
     realPanelWidth(){
       return this.formatMesure(this.panelWidth);
@@ -137,6 +138,7 @@ export default {
   width: 300px;
   height: 24px;
   line-height: 24px;
+  text-overflow: ellipsis;
   overflow: hidden;
 }
 .required{
@@ -155,6 +157,7 @@ export default {
 .tool-btn {
   margin-right: 5px;
   float:right;
+  text-decoration: none;
 }
 ul.panel {
   list-style-type: none;
@@ -175,30 +178,16 @@ ul.panel-pop {
 ul.panel li{
   height: 25px;
 }
-li.li-item {
-  margin-left:2px;
-  display: inline-block;
-  text-align: left;
-  overflow-x: hidden;
-}
-li.li-item,li.li-item label{
-  cursor: pointer;
-}
-li.li-item:hover {
-  outline: 1px dashed cadetblue ;
-}
 
 .panel .tools{
-  height: 28px;
+  height: 30px;
   clear: both;
   line-height: 28px;
-}
-.panel .tools .clear,.panel .tools .ok{
-  float:right;
 }
 .tools input[type="text"]{
   height: 20px;
   padding: 0 2px;
+  border:1px solid #ccc;
 }
 a {
   color: #42b983;
@@ -214,6 +203,76 @@ a {
   zoom: 1;
 }
 
+li.li-item,li.li-item label{
+  cursor: pointer;
+}
+
+.li-item {
+  position: relative;
+  height: 25px;
+  margin-left:2px;
+  display: inline-block;
+  text-align: left;
+  overflow-x: hidden;
+}
+.li-item input[type='checkbox'] {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  opacity: 0;
+}
+.li-item label {
+  position: absolute;
+  left: 24px;
+  top: 0;
+  height: 20px;
+  line-height: 20px;
+}
+.li-item label:before {
+  content: '';
+  position: absolute;
+  left: -24px;
+  top: 0;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+}
+
+.li-item label:after {
+  content: '';
+  position: absolute;
+  left: -18px;
+  top: 2px;
+  width: 5px;
+  height: 10px;
+  border: 0;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  background: #fff;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+}
+
+.li-item input[type='checkbox']:checked + label:before {
+  background: #4cd764;
+  border-color: #4cd764;
+}
+.li-item input[type='checkbox']:checked + label:after {
+  background: #4cd764;
+}
+
+
 .fade-enter-active/*, .fade-leave-active*/ {
   transition: opacity 0.3s;
 }
@@ -221,4 +280,5 @@ a {
 .fade-enter, .fade-leave-to {
   opacity: 0;
 }
+
 </style>
