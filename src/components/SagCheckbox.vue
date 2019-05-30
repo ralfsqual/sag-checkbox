@@ -39,13 +39,13 @@ export default {
     width:{type: [Number,String], default: "300px" },
     panelWidth:{type: [Number,String], default: "300px" },
     itemWidth:{type: [Number,String], default: "auto" },
-    mode:{type:String, default:"default" } // default plain
+    mode:{type:String, default:"default" }
   },
   data(){
     return {
       visible:false,
       filterQuery:"",
-      items:[]
+      items:this.source || []
     };
   },
   filters:{
@@ -111,15 +111,12 @@ export default {
       this.items.filter(item => item.name.indexOf(newValue) !== -1).forEach(i=>i.visible = true);
     }
   },
-  created(){
-    this.items = this.source;
-  },
   mounted() {
     if(window && this.mode === 'default') {
       window.document.addEventListener('click', this.hidePanel, false);
     }
   },
-  destroyed() {
+  beforeDestroy() {
     if(window && this.mode === 'default') {
       window.document.removeEventListener('click', this.hidePanel, false);
     }

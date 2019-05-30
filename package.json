@@ -1,11 +1,12 @@
 {
-  "name": "sag-checkbox",
+  "name": "@ralfsqual/checkbox",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "./dist/SagCheckbox.common.js",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "build:plugin": "vue-cli-service build --target lib --name SagCheckbox --report-json ./src/index.js",
+    "build:boundle": "vue-cli-service build --target lib --name SagCheckbox --report ./src/index.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
