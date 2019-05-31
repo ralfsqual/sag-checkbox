@@ -1,3 +1,4 @@
+import '@babel/polyfill';
 import SagCheckbox from "./components/SagCheckbox";
 
 const SagCheckboxPlugin = {

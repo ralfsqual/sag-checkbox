@@ -69,7 +69,7 @@ export default {
       return width === 'auto' ? '100%' : width;
     },
     realPanelWidth(){
-      return this.formatMesure(this.panelWidth);
+      return this.formatMesure(isNaN(this.panelWidth)?this.panelWidth:this.panelWidth+16);
     },
     checkedItems(){
       return this.items.filter(it => it.checked);
@@ -133,13 +133,26 @@ export default {
   text-align: left;
 }
 .result{
-  background: url("../static/dropdown.png") no-repeat right center;
   border: 1px solid #ccc;
+  white-space: nowrap;
+  border-right: none;
   width: 300px;
   height: 24px;
   line-height: 24px;
   text-overflow: ellipsis;
   overflow: hidden;
+}
+.result:after{
+  content:'';
+  background: url("../static/dropdown.png") no-repeat 5px center;
+  height: 24px;
+  width: 16px;
+  display: block;
+  position: absolute;
+  top: 0;
+  right: -17px;
+  border: 1px solid #ccc;
+  border-left:none;
 }
 .required{
   border-left: 1px solid red;
@@ -213,7 +226,8 @@ li.li-item,li.li-item label{
   margin-left:2px;
   display: inline-block;
   text-align: left;
-  overflow-x: hidden;
+  overflow: hidden;
+  white-space: nowrap;
 }
 .li-item input[type='checkbox'] {
   position: absolute;
