@@ -12,7 +12,7 @@
             <a href="javascript:void(0)" class="tool-btn" @click="clearAll" >清空</a>
           </li>
           <li class="li-item" v-for="(item,index) in items" :key="item.value" @click.stop="itemClickHandler(item)" :style="{width:realItemWidth}" :title="item.name" v-show="item.visible !== false">
-            <input type="checkbox" :name="name|formatName(index)" :checked="item.checked" /><label>{{item.name}}</label>
+            <input type="checkbox" :name="name|formatName(index)" :checked="item.checked" :value="item.value" /><label>{{item.name}}</label>
           </li>
         </ul>
       </transition>
@@ -20,7 +20,7 @@
     <template v-if="mode === 'plain'" >
       <ul class="panel clearfix" :style="{minWidth: realWidth}">
         <li class="li-item" v-for="(item,index) in items" :key="item.value" @click.stop="itemClickHandler(item)" :style="{width:realItemWidth}">
-          <input type="checkbox" :name="name|formatName(index)" :checked="item.checked" /><label>{{item.name}}</label>
+          <input type="checkbox" :name="name|formatName(index)" :checked="item.checked" :value="item.value" /><label>{{item.name}}</label>
         </li>
       </ul>
     </template>
@@ -115,11 +115,13 @@ export default {
   mounted() {
     if(window && this.mode === 'default') {
       window.document.addEventListener('click', this.hidePanel, false);
+      window['vm$' + this.id] = this;
     }
   },
   beforeDestroy() {
     if(window && this.mode === 'default') {
       window.document.removeEventListener('click', this.hidePanel, false);
+      window['vm$' + this.id] = undefined;
     }
   }
 }
