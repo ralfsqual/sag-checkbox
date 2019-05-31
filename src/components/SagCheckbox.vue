@@ -36,8 +36,8 @@ export default {
     source:{type: Array, required: true },
     hasFilter:{type: Boolean, default: true },
     required:{type:[Boolean,String], default: true },
-    width:{type: [Number,String], default: "300px" },
-    panelWidth:{type: [Number,String], default: "300px" },
+    width:{type: [Number,String], default: "300" },
+    panelWidth:{type: [Number,String], default: "316" },
     itemWidth:{type: [Number,String], default: "auto" },
     mode:{type:String, default:"default", validator:value => ['default','plain'].includes(value)}
   },
@@ -69,7 +69,10 @@ export default {
       return width === 'auto' ? '100%' : width;
     },
     realPanelWidth(){
-      return this.formatMesure(isNaN(this.panelWidth)?this.panelWidth:this.panelWidth+16);
+      if(this.panelWidth === 'auto' && !isNaN(this.width)){
+          return (parseInt(this.width) + 16) + 'px';
+      }
+      return this.formatMesure(this.panelWidth);
     },
     checkedItems(){
       return this.items.filter(it => it.checked);
@@ -193,6 +196,7 @@ ul.panel-pop {
   z-index: 1;
   background-color: #fff;
   border: 1px solid #ccc;
+  border-top: none;
 }
 ul.panel li{
   height: 25px;
@@ -246,7 +250,7 @@ li.li-item,li.li-item label{
 .li-item label {
   position: absolute;
   left: 24px;
-  top: 0;
+  top: 5px;
   height: 20px;
   line-height: 20px;
 }
