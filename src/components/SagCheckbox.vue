@@ -1,5 +1,5 @@
 <template>
-  <div class="wrapper" @click.stop>
+  <div class="wrapper" :id="id" @click.stop>
     <template v-if="mode === 'default'" >
       <div class="result" :class="{required}" :style="{width:realWidth}" @click.stop="visible = true" :title="title">
         <span v-for="item in checkedItems" :key="item.value" class="checked-item" @click.stop="itemClickHandler(item)" >{{item.name}}</span>
@@ -113,15 +113,19 @@ export default {
     }
   },
   mounted() {
-    if(window && this.mode === 'default') {
-      window.document.addEventListener('click', this.hidePanel, false);
+    if(window) {
       window['vm$' + this.id] = this;
+      if(this.mode === 'default'){
+        window.document.addEventListener('click', this.hidePanel, false);
+      }
     }
   },
   beforeDestroy() {
-    if(window && this.mode === 'default') {
-      window.document.removeEventListener('click', this.hidePanel, false);
+    if(window) {
       window['vm$' + this.id] = undefined;
+      if(this.mode === 'default') {
+        window.document.removeEventListener('click', this.hidePanel, false);
+      }
     }
   }
 }
