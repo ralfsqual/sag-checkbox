@@ -54,7 +54,7 @@ export default {
       if(!name)return'';
       let [prefix,subfix]  = name.split(".");
       if(prefix && subfix){
-        return prefix + '[' + index +']' + subfix;
+        return prefix + '[' + index +'].' + subfix;
       }
       return prefix||subfix;
     }
