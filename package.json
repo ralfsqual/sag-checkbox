@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": false,
   "main": "./dist/SagCheckbox.common.js",
+  "repository": "http://github.com/ralfsqual/sag-checkbox",
+  "license": "MIT",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
