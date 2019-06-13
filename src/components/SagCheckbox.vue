@@ -167,10 +167,21 @@ export default {
   border-left: 1px solid red;
 }
 .result .checked-item{
-  margin: 0 5px;
-  padding-left: 10px;
-  background: url("../static/delete.gif") no-repeat left center;
+  background: url("../static/delete.gif") no-repeat 2px center #fafafa;
+  /*margin: 0 5px;*/
+  padding: 0 4px 0 14px;
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.65);
+  border: 1px solid #e8e8e8;
+  border-radius: 2px;
+
+  /*float: left;*/
+  margin: 0 2px;
+  max-width: 99%;
+  position: relative;
+  overflow: hidden;
+  -webkit-transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  transition: padding 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
 }
 .filter{
   float: left;

@@ -19,9 +19,9 @@
   /* eslint-disable no-console */
 
   import Vue from 'vue'
-  import A from './utils/store'
-  import SagCheckbox from './components/SagCheckbox.vue'
-  import ComponentB from './components/ComponentB'
+  import A from '@/utils/store'
+  import SagCheckbox from 'components/SagCheckbox.vue'
+  import ComponentB from 'components/ComponentB'
   Vue.component('B',ComponentB);
   export default {
     name: 'app',
