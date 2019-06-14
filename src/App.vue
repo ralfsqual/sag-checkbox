@@ -11,7 +11,7 @@
       mode="default"
       :required="true"
     />
-    <component-b/>
+<!--    <component-b/>-->
   </div>
 </template>
 
@@ -21,8 +21,8 @@
   import Vue from 'vue'
   import A from '@/utils/store'
   import SagCheckbox from 'components/SagCheckbox.vue'
-  import ComponentB from 'components/ComponentB'
-  Vue.component('B',ComponentB);
+  // import ComponentB from 'components/ComponentB'
+  // Vue.component('B',ComponentB);
   export default {
     name: 'app',
     beforeCreate(){
@@ -48,7 +48,7 @@
     },
     components: {
       SagCheckbox,
-      ComponentB
+      // ComponentB
     },
     data(){
       return {
