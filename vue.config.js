@@ -10,9 +10,19 @@ module.exports = {
     }
   },
 
+  css:{
+    loaderOptions: {
+      less: {
+        javaEnabled: true
+      }
+    }
+  },
+
   devServer: {
     port: 8085, // 端口号
     host: 'localhost',
+    https: false,
+    proxy: {}
 
   }
 }
