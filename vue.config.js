@@ -19,10 +19,9 @@ module.exports = {
   },
 
   devServer: {
-    port: 8085, // 端口号
+    port: 8085,
     host: 'localhost',
-    https: false,
-    proxy: {}
+    https: false
 
   }
 }

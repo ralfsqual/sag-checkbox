@@ -1,11 +1,11 @@
-import Vue from 'vue'
+// import Vue from 'vue'
 
-const A = {
-  id : '12',
-  name : 'Wang'
+const A = function A(){
+  return {
+    id : '12',
+    name : 'Wang'
+  }
 }
 
-
-export default Vue.observable(A);
-
-export var B = A
+/*Vue.observable(A())*/
+export default A;

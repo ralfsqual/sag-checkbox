@@ -11,7 +11,7 @@
       mode="default"
       :required="true"
     />
-<!--    <component-b/>-->
+    <component-b/>
   </div>
 </template>
 
@@ -19,16 +19,16 @@
   /* eslint-disable no-console */
 
   import Vue from 'vue'
-  import A from '@/utils/store'
-  import SagCheckbox from 'components/SagCheckbox.vue'
-  // import ComponentB from 'components/ComponentB'
+  // import A from './utils/store'
+  import SagCheckbox from './components/SagCheckbox.vue'
+  // import ComponentB from '@/components/ComponentB'
   // Vue.component('B',ComponentB);
   export default {
     name: 'app',
     beforeCreate(){
-      console.log(`A1 name: ${A.name}`);
-      A.name = 'Ding';
-      console.log(`A1 name: ${A.name}`);
+      // console.log(`A1 name: ${A.name}`);
+      // A.name = 'Ding';
+      // console.log(`A1 name: ${A.name}`);
       console.log(`${this.$options.name} beforeCreate`)
     },
     created() {
@@ -52,7 +52,7 @@
     },
     data(){
       return {
-        A: A,
+        // A: A(),
         vue: Vue,
         source: [
           {name: '苹果', value: '1'},
