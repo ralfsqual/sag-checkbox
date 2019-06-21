@@ -17,10 +17,12 @@
     "vue": "^2.6.10"
   },
   "devDependencies": {
+    "@vue/babel-plugin-transform-vue-jsx": "^1.0.0",
     "@vue/cli-plugin-babel": "^3.8.0",
     "@vue/cli-plugin-eslint": "^3.8.0",
     "@vue/cli-service": "^3.8.3",
     "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-remove-console": "^6.9.4",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "vue-template-compiler": "^2.5.21"
